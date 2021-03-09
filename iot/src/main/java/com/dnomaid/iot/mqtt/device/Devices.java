@@ -43,16 +43,20 @@ public class Devices implements Constants {
         return myGlobal;
     }    
     Devices(){
-		Device010 = new Device(GATEWAY01,DEVICE010);
+//		Device010 = new Device(GATEWAY01,DEVICE010);
 		dev010Topic001 = new TopicNoJson(STAT_PREFIX, RELAY011, new POWER());
 		dev010Topic002 = new TopicNoJson(CMND_PREFIX, RELAY011, new POWER());
-		Device010.addTopic(dev010Topic001);
-		Device010.addTopic(dev010Topic002);		
-		Device020 = new Device(GATEWAY01,DEVICE020);
+//		Device010.addTopic(dev010Topic001);
+//		Device010.addTopic(dev010Topic002);		
+		Device010 = createDevice(GATEWAY01,DEVICE010, dev010Topic001, dev010Topic002);
+		
+//		Device020 = new Device(GATEWAY01,DEVICE020);
 		dev020Topic001 = new TopicNoJson(STAT_PREFIX, RELAY021, new POWER());
 		dev020Topic002 = new TopicNoJson(CMND_PREFIX, RELAY021, new POWER());		
-		Device020.addTopic(dev020Topic001);
-		Device020.addTopic(dev020Topic002);		
+//		Device020.addTopic(dev020Topic001);
+//		Device020.addTopic(dev020Topic002);		
+		Device020 = createDevice(GATEWAY01,DEVICE020, dev020Topic001, dev020Topic002);
+
 		Device030 = new Device(GATEWAY01,DEVICE030);
 		dev030Topic001 = new TopicNoJson(STAT_PREFIX, RELAY031, new POWER());
 		dev030Topic002 = new TopicNoJson(CMND_PREFIX, RELAY031, new POWER());		
@@ -113,6 +117,19 @@ public class Devices implements Constants {
 	public ArrayList<Device> getDevices() {return Devices;}
 	public ArrayList<Device> getRelay() {return Relays;}
 
+	public Device createDevice(String Gateway, String Device, TopicNoJson topic01, TopicNoJson topic02){
+		Device device = new Device(Gateway,Device);
+		device.addTopic(topic01);
+		device.addTopic(topic02);
+		return device;
+	}
+	
+	public Device createDevice(String Gateway, String Device, TopicNoJson topic01){
+		Device device = new Device(Gateway,Device);
+		device.addTopic(topic01);		
+		return device;
+	}
+	
 	public Device getDevice010() {return Device010;}
 	public Device getDevice020() {return Device020;}
 	public Device getDevice030() {return Device030;}
