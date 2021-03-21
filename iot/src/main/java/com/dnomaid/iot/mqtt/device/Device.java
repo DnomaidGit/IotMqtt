@@ -3,6 +3,7 @@ package com.dnomaid.iot.mqtt.device;
 import java.util.ArrayList;
 
 import com.dnomaid.iot.mqtt.topic.Topic;
+import com.dnomaid.iot.mqtt.topic.TopicNoJson;
 
 public class Device {
 	private ArrayList<Topic> Topics;
@@ -24,6 +25,7 @@ public class Device {
 		}
 		return Topics;
 		}
+	
 	public void addTopic(Topic topic) {
 		try {
 			topic.setName(topic.getIdFunc()+"/"+Gateway+"/"+Device+"/"+topic.getName());

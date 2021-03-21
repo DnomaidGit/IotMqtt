@@ -30,4 +30,7 @@ public interface Constants {
     String RELAY051="Relay05/POWER";
     String RELAY311="Relay01/set";
     String SENSOR311="Relay01";
+    
+    enum nameTypeDevice {SonoffS20, SonoffSNZB02, AqaraTemp, XiaomiZNCZ04LM}
+    enum nameTypeGateway {Router_1, CC2531_1}
 }

@@ -1,6 +1,9 @@
 package com.dnomaid.iot.mqtt.topic.noJson;
 
-public class Hum {
+import com.dnomaid.iot.mqtt.topic.ActionTopic;
+
+public class Hum implements ActionTopic
+{
 	private String name = "Hum";
 	private String Hum;
 
@@ -17,4 +20,11 @@ public class Hum {
 		return name;
 	}
 
+	@Override
+	public String getValueTopic(String valueName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
