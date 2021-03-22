@@ -9,12 +9,14 @@ public class Device {
 	private ArrayList<Topic> Topics;
 	private String Gateway;
 	private String Device;
+	private String GroupList;
 		
-	public Device(String gateway, String device) {
+	public Device(String gateway, String device, String groupList) {
 		super();
 		Topics = new ArrayList<Topic>();
 		Gateway = gateway;
 		Device = device;
+		GroupList = groupList;
 	}
 
 	public ArrayList<? extends Topic> getTopics() {
@@ -49,6 +51,14 @@ public class Device {
 
 	public void setDevice(String device) {
 		Device = device;
+	}
+	
+	public String getGroupList() {
+		return GroupList;
+	}
+
+	public void setGroupList(String groupList) {
+		GroupList = groupList;
 	}
 	
 	@Override
