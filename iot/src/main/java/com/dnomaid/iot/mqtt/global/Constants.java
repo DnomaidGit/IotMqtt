@@ -33,6 +33,6 @@ public interface Constants {
 
     enum nameTypeGateway {Router_1, CC2531_1}
     enum nameTypeDevice {SonoffS20, SonoffSNZB02, AqaraTemp, XiaomiZNCZ04LM}
-    enum namegroupList {Relay, SensorClimate, RelaySensorClimate}
+    enum nameGroupList {Relay, SensorClimate, RelaySensorClimate}
 
 }
