@@ -32,7 +32,7 @@ public interface Constants {
     String SENSOR311="Relay01";
 
     enum nameTypeGateway {Router_1, CC2531_1}
-    enum nameTypeDevice {SonoffS20, SonoffSNZB02, AqaraTemp, XiaomiZNCZ04LM}
-    enum nameGroupList {Relay, SensorClimate, RelaySensorClimate}
+    enum nameTypeDevice {SonoffS20, SonoffSNZB02, AqaraTemp, XiaomiZNCZ04LM,TuyaZigBeeSensor}
+    enum nameGroupList {Relay, Sensor, SensorClimate, RelaySensorClimate}
 
 }

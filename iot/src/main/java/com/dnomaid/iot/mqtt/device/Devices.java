@@ -6,32 +6,13 @@ import com.dnomaid.iot.mqtt.global.Constants;
 import com.dnomaid.iot.mqtt.topic.TopicJson;
 import com.dnomaid.iot.mqtt.topic.TopicNoJson;
 import com.dnomaid.iot.mqtt.topic.json.*;
-import com.dnomaid.iot.mqtt.topic.noJson.Hum;
 import com.dnomaid.iot.mqtt.topic.noJson.POWER;
 import com.dnomaid.iot.mqtt.topic.noJson.Set;
-import com.dnomaid.iot.mqtt.topic.noJson.Temp;
 
 public class Devices implements Constants {	
     private ArrayList<Device> Devices;
     private ArrayList<Device> Relays;
     private ArrayList<Device> SensorsClimate;
-    private Device Device010,Device020,Device030,Device040,Device050;
-    private Device Device110;
-	private Device Device120;
-	private Device Device130;
-	private Device Device310;	
-
-    private TopicNoJson dev010Topic001,dev010Topic002;
-    private TopicNoJson dev020Topic001,dev020Topic002;
-    private TopicNoJson dev030Topic001,dev030Topic002;
-    private TopicNoJson dev040Topic001,dev040Topic002;
-    private TopicNoJson dev050Topic001,dev050Topic002;
-    private TopicJson dev110Topic001;
-    private TopicJson dev120Topic001;
-    private TopicJson dev130Topic001;
-    private TopicJson dev310Topic001;
-    private TopicNoJson dev310Topic002;
-    
 
     private static Devices myGlobal = null;
 
@@ -41,54 +22,19 @@ public class Devices implements Constants {
         }
         return myGlobal;
     }    
-    Devices(){
-    	//Relays
-    	/*
-//		dev010Topic001 = new TopicNoJson(STAT_PREFIX, RELAY011, new POWER());
-//		dev010Topic002 = new TopicNoJson(CMND_PREFIX, RELAY011, new POWER());
-//		Device010 = createDevice(GATEWAY01,DEVICE010, nameGroupList.Relay.name(), dev010Topic001, dev010Topic002);		
-		dev020Topic001 = new TopicNoJson(STAT_PREFIX,  RELAY021, new POWER());
-		dev020Topic002 = new TopicNoJson(CMND_PREFIX, RELAY021, new POWER());		
-		Device020 = createDevice(GATEWAY01,DEVICE020, nameGroupList.Relay.name(), dev020Topic001, dev020Topic002);
-		dev030Topic001 = new TopicNoJson(STAT_PREFIX, RELAY031, new POWER());
-		dev030Topic002 = new TopicNoJson(CMND_PREFIX, RELAY031, new POWER());		
-		Device030 = createDevice(GATEWAY01,DEVICE030, nameGroupList.Relay.name(), dev030Topic001, dev030Topic002);		
-		dev040Topic001 = new TopicNoJson(STAT_PREFIX, RELAY041, new POWER());
-		dev040Topic002 = new TopicNoJson(CMND_PREFIX, RELAY041, new POWER());		
-		Device040 = createDevice(GATEWAY01,DEVICE040, nameGroupList.Relay.name(), dev040Topic001, dev040Topic002);
-		dev050Topic001 = new TopicNoJson(STAT_PREFIX, RELAY051, new POWER());
-		dev050Topic002 = new TopicNoJson(CMND_PREFIX, RELAY051, new POWER());		
-		Device050 = createDevice(GATEWAY01,DEVICE050, nameGroupList.Relay.name(), dev050Topic001, dev050Topic002);
-		*/
-		//Sensor
-		dev110Topic001 = new TopicJson(STAT_PREFIX,SENSOR111,new SonoffSNZB02Json());
-		Device110 = createDevice(GATEWAY02,DEVICE110, nameGroupList.SensorClimate.name(), dev110Topic001);
-		dev120Topic001 = new TopicJson(STAT_PREFIX,SENSOR121,new AqaraTempJson());		
-		Device120 = createDevice(GATEWAY02,DEVICE120, nameGroupList.SensorClimate.name(), dev120Topic001);
-		dev130Topic001 = new TopicJson(STAT_PREFIX,SENSOR131,new TuyaZigBeeSensorJson());
-		Device130 = createDevice(GATEWAY02,DEVICE130, nameGroupList.SensorClimate.name(), dev130Topic001);
-		//Relay/Sensor
-		dev310Topic001 = new TopicJson(MIX_PREFIX, SENSOR311, new XiaomiZNCZ04LM());
-		dev310Topic002 = new TopicNoJson(MIX_PREFIX, RELAY311, new Set());		
-		Device310 = createDevice(GATEWAY02,DEVICE310, nameGroupList.RelaySensorClimate.name(), dev310Topic001, dev310Topic002);
-		
+    Devices(){		
 		Devices  = new ArrayList<>();
 		Relays  = new ArrayList<>();
 		SensorsClimate  = new ArrayList<>();
-		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "1");
-		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "2");
-		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "3");
-		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "4");
-		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "5");
-//		addDevice(Device010, nameGroupList.Relay);
-//		addDevice(Device020, nameGroupList.Relay);
-//		addDevice(Device030, nameGroupList.Relay);
-//		addDevice(Device040, nameGroupList.Relay);
-//		addDevice(Device050, nameGroupList.Relay);
-		addDevice(Device110, nameGroupList.SensorClimate);
-		addDevice(Device120, nameGroupList.SensorClimate);
-		addDevice(Device130, nameGroupList.SensorClimate);
-		addDevice(Device310, nameGroupList.RelaySensorClimate);
+		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "1", "1");
+		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "2", "2");
+		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "3", "3");
+		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "4", "4");
+		selectDevice(nameGroupList.Relay, nameTypeDevice.SonoffS20, "5", "5");
+		selectDevice(nameGroupList.Sensor, nameTypeDevice.SonoffSNZB02, "1", "1");
+		selectDevice(nameGroupList.Sensor, nameTypeDevice.AqaraTemp, "1", "2");
+		selectDevice(nameGroupList.Sensor, nameTypeDevice.TuyaZigBeeSensor, "1", "3");
+		selectDevice(nameGroupList.RelaySensorClimate, nameTypeDevice.XiaomiZNCZ04LM, "1", "1");
 		
     }
     public void addDevice(Device device, nameGroupList groupList){
@@ -97,6 +43,9 @@ public class Devices implements Constants {
 		case Relay:
 			Relays.add(device);			
 			break;
+		case Sensor:
+			SensorsClimate.add(device);						
+			break;	
 		case SensorClimate:
 			SensorsClimate.add(device);						
 			break;
@@ -106,33 +55,61 @@ public class Devices implements Constants {
 			break;
 		default:
 			break;
-		}
-    	
+		}   	
     }
     
 	public ArrayList<Device> getDevices() {return Devices;}
 	public ArrayList<Device> getRelays() {return Relays;}
 	public ArrayList<Device> getSensors() {return SensorsClimate;}
 	
-	public void selectDevice (nameGroupList groupList, nameTypeDevice typeList, String numberDevice){
+	public void selectDevice (nameGroupList groupList, nameTypeDevice typeList, String numberDevice, String number){
 		String nametopic01 = "";
 		String nametopic02 = "";
 		String nameDevice = "";
+		TopicNoJson topicNoJson01;
+		TopicNoJson topicNoJson02;
+		TopicJson topicJson01;
+		Device device;
+		
 		switch (typeList) {
 		case SonoffS20:
-			nametopic01 = groupList+"0"+numberDevice+"/POWER";
-			nametopic02 = groupList+"0"+numberDevice+"/POWER";
+			nametopic01 = groupList+"0"+number+"/POWER";
+			nametopic02 = groupList+"0"+number+"/POWER";
 			nameDevice = typeList+"_"+numberDevice;
-			TopicNoJson topic01 = new TopicNoJson(STAT_PREFIX, nametopic01, new POWER());
-			TopicNoJson topic02 = new TopicNoJson(CMND_PREFIX, nametopic02, new POWER());
-			Device device = createDevice(GATEWAY01,nameDevice, groupList.name(), topic01, topic02);		
+			topicNoJson01 = new TopicNoJson(STAT_PREFIX, nametopic01, new POWER());
+			topicNoJson02 = new TopicNoJson(CMND_PREFIX, nametopic02, new POWER());
+			device = createDevice(GATEWAY01,nameDevice, groupList.name(), topicNoJson01, topicNoJson02);		
 			addDevice(device, groupList);
 			break;
 		case SonoffSNZB02:
+			nametopic01 = groupList+"0"+number;
+			nameDevice = typeList+"_"+numberDevice;
+			topicJson01 = new TopicJson(STAT_PREFIX, nametopic01, new SonoffSNZB02Json());
+			device = createDevice(GATEWAY02,nameDevice, groupList.name(), topicJson01);	
+			addDevice(device, groupList);
 			break;
 		case AqaraTemp:
+			nametopic01 = groupList+"0"+number;
+			nameDevice = typeList+"_"+numberDevice;
+			topicJson01 = new TopicJson(STAT_PREFIX, nametopic01, new AqaraTempJson());
+			device = createDevice(GATEWAY02,nameDevice, groupList.name(), topicJson01);	
+			addDevice(device, groupList);
+			break;
+		case TuyaZigBeeSensor:
+			nametopic01 = groupList+"0"+number;
+			nameDevice = typeList.name();//+"_"+numberDevice;
+			topicJson01 = new TopicJson(STAT_PREFIX, nametopic01, new TuyaZigBeeSensorJson());
+			device = createDevice(GATEWAY02,nameDevice, groupList.name(), topicJson01);	
+			addDevice(device, groupList);
 			break;
 		case XiaomiZNCZ04LM:
+			nametopic01 = "Relay01";
+			nametopic02 = "Relay01/set";
+			nameDevice = typeList+"_"+numberDevice;
+			topicJson01 = new TopicJson(MIX_PREFIX, nametopic01, new XiaomiZNCZ04LM());
+			topicNoJson02 = new TopicNoJson(MIX_PREFIX, nametopic02, new Set());
+			device = createDevice(GATEWAY02,nameDevice, groupList.name(), topicJson01, topicNoJson02);		
+			addDevice(device, groupList);
 			break;
 		default:
 			break;
