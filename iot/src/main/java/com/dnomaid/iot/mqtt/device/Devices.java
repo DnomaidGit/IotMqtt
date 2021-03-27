@@ -6,8 +6,7 @@ import com.dnomaid.iot.mqtt.global.Constants;
 import com.dnomaid.iot.mqtt.topic.TopicJson;
 import com.dnomaid.iot.mqtt.topic.TopicNoJson;
 import com.dnomaid.iot.mqtt.topic.json.*;
-import com.dnomaid.iot.mqtt.topic.noJson.POWER;
-import com.dnomaid.iot.mqtt.topic.noJson.Set;
+import com.dnomaid.iot.mqtt.topic.noJson.*;
 
 public class Devices implements Constants {	
     private ArrayList<Device> Devices;
@@ -25,17 +24,7 @@ public class Devices implements Constants {
     Devices(){		
 		Devices  = new ArrayList<>();
 		Relays  = new ArrayList<>();
-		SensorsClimate  = new ArrayList<>();
-		selectDevice(TypeDevice.SonoffS20, "1");
-		selectDevice(TypeDevice.SonoffS20, "2");
-		selectDevice(TypeDevice.SonoffS20, "3");
-		selectDevice(TypeDevice.SonoffS20, "4");
-		selectDevice(TypeDevice.SonoffS20, "5");
-		selectDevice(TypeDevice.SonoffSNZB02, "1");
-		selectDevice(TypeDevice.AqaraTemp, "1");
-		selectDevice(TypeDevice.TuyaZigBeeSensor, "1");
-		selectDevice(TypeDevice.XiaomiZNCZ04LM, "1");
-		
+		SensorsClimate  = new ArrayList<>();		
     }
     public void addDevice(Device device, GroupList groupList){
     	Devices.add(device);
@@ -141,5 +130,11 @@ public class Devices implements Constants {
 		return device;
 	}	
 	
-        
+	public String getPublishTopicRelay(Integer numberRelay) {
+		String PublishTopicRelay = "PublishTopic01Relay??";
+		if(numberRelay>0&getRelays().size()>=numberRelay) {
+			PublishTopicRelay = getRelays().get(numberRelay-1).getTopics().get(1).getName();
+		}
+		return PublishTopicRelay;
+	}    
 }

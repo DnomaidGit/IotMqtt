@@ -5,24 +5,34 @@ import java.util.List;
 
 import com.dnomaid.iot.mqtt.Mqtt;
 import com.dnomaid.iot.mqtt.device.Devices;
+import com.dnomaid.iot.mqtt.global.Constants.TypeDevice;
 import com.dnomaid.iot.mqtt.topic.ActionTopic.TypeTopic;
 
 public class App implements Runnable {
-	static List <String> lista=new ArrayList<>(); 
+//	static List <String> lista=new ArrayList<>(); 
 	public static void main(String[] args) {	    
 		App app= new App();
-		lista.add("1");
-		lista.add("2");
-		lista.add("3");
-		lista.add("4");
-		lista.add("5");
+		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "1");
+		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "2");
+		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "3");
+		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "4");
+		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "5");
+		Devices.getInst().selectDevice(TypeDevice.SonoffSNZB02, "1");
+		Devices.getInst().selectDevice(TypeDevice.AqaraTemp, "1");
+		Devices.getInst().selectDevice(TypeDevice.TuyaZigBeeSensor, "1");
+		Devices.getInst().selectDevice(TypeDevice.XiaomiZNCZ04LM, "1");
+        
 		Mqtt m = new Mqtt();
 		m.connection();
 		m.subscribe();
+		//m.publish(Devices.getInst().getPublishTopicRelay(2), "ON");
 		//m.publish(Devices.getInst().getRelays().get(5).getTopics().get(1).getName(),"ON");
 		//Devices.getInst().getRelay().stream().forEach(a->{m.publish(a.getTopics().get(1).getName(), "ON");});
 		//m.unsubscribe();
 		//m.disconnection();
+		
+		
+		
 		while(true){app.run();}				
 	}
 	@Override
