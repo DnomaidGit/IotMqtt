@@ -15,14 +15,14 @@ public class SonoffS20Json implements ActionTopic {
 	public void setPOWER(String pOWER) { POWER = pOWER; }
 
 	@Override
-	public String getValueTopic(String valueName) {
-		String str = valueName;
-		switch (str) {
-			case "power":
+	public String getValueTopic(TypeTopic typeTopic) {
+		String str = "--.--";
+		switch (typeTopic) {
+			case Power:
 				str = String.valueOf(getPOWER());
 				break;
 			default:
-				System.out.println("Error");
+				str = "??¿¿";
 		}
 		return str;
 	}

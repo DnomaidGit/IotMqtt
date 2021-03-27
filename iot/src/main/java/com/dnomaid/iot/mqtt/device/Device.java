@@ -3,7 +3,6 @@ package com.dnomaid.iot.mqtt.device;
 import java.util.ArrayList;
 
 import com.dnomaid.iot.mqtt.topic.Topic;
-import com.dnomaid.iot.mqtt.topic.TopicNoJson;
 
 public class Device {
 	private ArrayList<Topic> Topics;

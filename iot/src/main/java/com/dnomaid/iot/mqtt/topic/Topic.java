@@ -11,7 +11,6 @@ public abstract class Topic implements ActionTopic {
 	private boolean TypeJson;	
 	private Gson gson;
 
-	
 	protected Topic(String idFunc, String name, Object type) {
 		super();
 		IdFunc = idFunc;
@@ -77,8 +76,13 @@ public abstract class Topic implements ActionTopic {
 		return Name;
 	}
 	@Override
-	public String getValueTopic(String valueName) {
-			System.out.println("Error getValueTopic");  
+	public String getValueTopic(TypeTopic typeTopic) {
+			System.out.println("Error getValueTopic");
+			try {
+				throw new Exception();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		return null;
 	}
 }

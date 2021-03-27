@@ -80,17 +80,17 @@ public class XiaomiZNCZ04LM implements ActionTopic {
 	}
 
 	@Override
-	public String getValueTopic(String valueName) {
-		String str = valueName;
-		switch (str) {
-			case "power":
+	public String getValueTopic(TypeTopic typeTopic) {
+		String str = "--.--";
+		switch (typeTopic) {
+			case Power:
 				str = getState();
 				break;
-			case "temperature":	
+			case Temperature:	
 				str = String.valueOf(getTemperature());
 				break;				
 			default:
-				System.out.println("Error");
+				str = "??¿¿";
 		}
 		return str;
 	}

@@ -39,29 +39,29 @@ public class TopicNoJson extends Topic {
 		return str;
 	}
 			
-	public String getValueTopic(String valueName) {	
+	public String getValueTopic(TypeTopic typeTopic) {	
 		String value = "--.--";
 		String str = getCast();
 		switch (str) {
 		case "POWER":
 			POWER power=new POWER();
 			if(isTypeNoJsonException(POWER.class.getName()))power = (POWER)getType();			
-			value = power.getValueTopic(valueName);
+			value = power.getValueTopic(typeTopic);
 			break;
 		case "Hum":
 			Hum hum=new Hum();
 			if(isTypeNoJsonException(Hum.class.getName()))hum = (Hum)getType();						
-			value = hum.getValueTopic(valueName);
+			value = hum.getValueTopic(typeTopic);
 			break;
 		case "Set":
 			Set set=new Set();
 			if(isTypeNoJsonException(Set.class.getName()))set = (Set)getType();						
-			value = set.getValueTopic(valueName);
+			value = set.getValueTopic(typeTopic);
 			break;
 		case "Temp":
 			Temp temp=new Temp();
 			if(isTypeNoJsonException(Temp.class.getName()))temp = (Temp)getType();						
-			value = temp.getValueTopic(valueName);
+			value = temp.getValueTopic(typeTopic);
 			break;									
 		default:
 			value = "??¿¿";

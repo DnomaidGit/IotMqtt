@@ -20,9 +20,16 @@ public class Temp implements ActionTopic {
 	}
 
 	@Override
-	public String getValueTopic(String valueName) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getValueTopic(TypeTopic typeTopic) {
+		String str = "--.--";
+		switch (typeTopic) {
+			case Temperature:
+				str = getTemp();
+				break;
+			default:
+				str = "??¿¿";
+		}
+		return str;
 	}
 
 }

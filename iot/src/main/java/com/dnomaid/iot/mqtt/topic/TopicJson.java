@@ -5,10 +5,6 @@ import com.dnomaid.iot.mqtt.topic.json.SonoffS20Json;
 import com.dnomaid.iot.mqtt.topic.json.SonoffSNZB02Json;
 import com.dnomaid.iot.mqtt.topic.json.TuyaZigBeeSensorJson;
 import com.dnomaid.iot.mqtt.topic.json.XiaomiZNCZ04LM;
-import com.dnomaid.iot.mqtt.topic.noJson.Hum;
-import com.dnomaid.iot.mqtt.topic.noJson.POWER;
-import com.dnomaid.iot.mqtt.topic.noJson.Set;
-import com.dnomaid.iot.mqtt.topic.noJson.Temp;
 
 public class TopicJson extends Topic {
 	public TopicJson(String idFunc, String name, Object type) {
@@ -44,34 +40,34 @@ public class TopicJson extends Topic {
 		return str;
 	}
 	
-	public String getValueTopic(String valueName) {	
+	public String getValueTopic(TypeTopic typeTopic) {	
 		String value = "--.--";
 		String str = getCast();
 		switch (str) {
 		case "AqaraTempJson":
 			AqaraTempJson aqaraTemp=new AqaraTempJson();
 			if(isTypeJsonException(AqaraTempJson.class.getName()))aqaraTemp = (AqaraTempJson)getType();			
-			value = aqaraTemp.getValueTopic(valueName);
+			value = aqaraTemp.getValueTopic(typeTopic);
 			break;
 		case "SonoffS20Json":
 			SonoffS20Json sonoffS20Json=new SonoffS20Json();
 			if(isTypeJsonException(SonoffS20Json.class.getName()))sonoffS20Json = (SonoffS20Json)getType();			
-			value = sonoffS20Json.getValueTopic(valueName);
+			value = sonoffS20Json.getValueTopic(typeTopic);
 			break;
 		case "SonoffSNZB02Json":
 			SonoffSNZB02Json sonoffSNZB02Json=new SonoffSNZB02Json();
 			if(isTypeJsonException(SonoffSNZB02Json.class.getName()))sonoffSNZB02Json = (SonoffSNZB02Json)getType();	
-			value = sonoffSNZB02Json.getValueTopic(valueName);
+			value = sonoffSNZB02Json.getValueTopic(typeTopic);
 			break;
 		case "TuyaZigBeeSensorJson":
 			TuyaZigBeeSensorJson tuyaZigBeeSensorJson = new TuyaZigBeeSensorJson();
 			if(isTypeJsonException(TuyaZigBeeSensorJson.class.getName()))tuyaZigBeeSensorJson = (TuyaZigBeeSensorJson)getType();
-			value = tuyaZigBeeSensorJson.getValueTopic(valueName);
+			value = tuyaZigBeeSensorJson.getValueTopic(typeTopic);
 			break;									
 		case "XiaomiZNCZ04LM":
 			XiaomiZNCZ04LM xiaomiZNCZ04LM = new XiaomiZNCZ04LM();
 			if(isTypeJsonException(XiaomiZNCZ04LM.class.getName()))xiaomiZNCZ04LM = (XiaomiZNCZ04LM)getType();			
-			value = xiaomiZNCZ04LM.getValueTopic(valueName);
+			value = xiaomiZNCZ04LM.getValueTopic(typeTopic);
 			break;
 		default:
 			value = "??¿¿";

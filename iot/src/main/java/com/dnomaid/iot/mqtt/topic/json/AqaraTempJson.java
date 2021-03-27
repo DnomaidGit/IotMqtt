@@ -58,20 +58,20 @@ public class AqaraTempJson implements ActionTopic {
 	}
 
 	@Override
-	public String getValueTopic(String valueName) {
-		String str = valueName;
-		switch (str) {
-			case "battery":
+	public String getValueTopic(TypeTopic typeTopic) {
+		String str = "--.--";
+		switch (typeTopic) {
+			case Battery:
 				str = String.valueOf(getBattery());
 				break;
-			case "humidity":
+			case Humidity:
 				str = String.valueOf(getHumidity());
 				break;
-			case "temperature":	
+			case Temperature:	
 				str = String.valueOf(getTemperature());
 				break;				
 			default:
-				System.out.println("Error");
+				str = "??¿¿";
 		}
 		return str;
 	}
