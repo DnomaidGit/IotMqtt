@@ -1,26 +1,23 @@
 package com.dnomaid.iot;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.dnomaid.iot.mqtt.Mqtt;
+import com.dnomaid.iot.mqtt.device.DeviceConfig;
 import com.dnomaid.iot.mqtt.device.Devices;
 import com.dnomaid.iot.mqtt.global.Constants.TypeDevice;
 import com.dnomaid.iot.mqtt.topic.ActionTopic.TypeTopic;
 
 public class App implements Runnable {
-//	static List <String> lista=new ArrayList<>(); 
 	public static void main(String[] args) {	    
 		App app= new App();
-		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "1");
-		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "2");
-		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "3");
-		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "4");
-		Devices.getInst().selectDevice(TypeDevice.SonoffS20, "5");
-		Devices.getInst().selectDevice(TypeDevice.SonoffSNZB02, "1");
-		Devices.getInst().selectDevice(TypeDevice.AqaraTemp, "1");
-		Devices.getInst().selectDevice(TypeDevice.TuyaZigBeeSensor, "1");
-		Devices.getInst().selectDevice(TypeDevice.XiaomiZNCZ04LM, "1");
+		Devices.getInst().newDevice(TypeDevice.SonoffS20, "1");
+		Devices.getInst().newDevice(TypeDevice.SonoffS20, "2");
+		Devices.getInst().newDevice(TypeDevice.SonoffS20, "3");
+		Devices.getInst().newDevice(TypeDevice.SonoffS20, "4");
+		Devices.getInst().newDevice(TypeDevice.SonoffS20, "5");
+		Devices.getInst().newDevice(TypeDevice.SonoffSNZB02, "1");
+		Devices.getInst().newDevice(TypeDevice.AqaraTemp, "1");
+		Devices.getInst().newDevice(TypeDevice.TuyaZigBeeSensor, "1");
+		Devices.getInst().newDevice(TypeDevice.XiaomiZNCZ04LM, "1");
         
 		Mqtt m = new Mqtt();
 		m.connection();
@@ -39,21 +36,31 @@ public class App implements Runnable {
     public void run() {
 	try {
 		Thread.sleep(1 * 5000);
-
-			System.out.println("Relay1: "+Devices.getInst().getRelays().get(0).getTopics().get(0).getValueTopic(TypeTopic.Power));
-			System.out.println("Relay2: "+Devices.getInst().getRelays().get(1).getTopics().get(0).getValueTopic(TypeTopic.Power));
-			System.out.println("Relay3: "+Devices.getInst().getRelays().get(2).getTopics().get(0).getValueTopic(TypeTopic.Power));
-			System.out.println("Relay4: "+Devices.getInst().getRelays().get(3).getTopics().get(0).getValueTopic(TypeTopic.Power));
-			System.out.println("Relay5: "+Devices.getInst().getRelays().get(4).getTopics().get(0).getValueTopic(TypeTopic.Power));
-			System.out.println("Relay6: "+Devices.getInst().getRelays().get(5).getTopics().get(0).getValueTopic(TypeTopic.Power));
-			System.out.println("SensorTemp1: "+Devices.getInst().getSensors().get(0).getTopics().get(0).getValueTopic(TypeTopic.Temperature));
-			System.out.println("SensorHum2: "+Devices.getInst().getSensors().get(0).getTopics().get(0).getValueTopic(TypeTopic.Humidity));
-			System.out.println("SensorTemp3: "+Devices.getInst().getSensors().get(1).getTopics().get(0).getValueTopic(TypeTopic.Temperature));
-			System.out.println("SensorHum4: "+Devices.getInst().getSensors().get(1).getTopics().get(0).getValueTopic(TypeTopic.Humidity));
-			System.out.println("SensorTemp5: "+Devices.getInst().getSensors().get(2).getTopics().get(0).getValueTopic(TypeTopic.Temperature));            
-			System.out.println("SensorHum6: "+Devices.getInst().getSensors().get(2).getTopics().get(0).getValueTopic(TypeTopic.Humidity));
-			System.out.println("SensorTemp7: "+Devices.getInst().getSensors().get(3).getTopics().get(0).getValueTopic(TypeTopic.Temperature));
-
+		Devices.getInst().getRelays().stream().forEach(a->{  		
+	    		System.out.println(a.getDevice()+" "+a.getGroupList()+": "
+	    				+a.getTopics().get(0).getValueTopic(TypeTopic.Power) +": "+TypeTopic.Power);				    
+	    });
+		Devices.getInst().getSensorsClimate().stream().forEach(a->{  		
+    		System.out.println(a.getDevice()+" "+a.getGroupList()+": " 
+    					+a.getTopics().get(0).getValueTopic(TypeTopic.Temperature)+": "+TypeTopic.Temperature);	
+    		System.out.println(a.getDevice()+" "+a.getGroupList()+": " 
+    					+a.getTopics().get(0).getValueTopic(TypeTopic.Humidity)+": "+TypeTopic.Humidity);	
+		});
+		Devices.getInst().deleteDevice(new DeviceConfig(TypeDevice.SonoffS20, "3"));
+//			System.out.println("Relay1: "+Devices.getInst().getRelays().get(0).getTopics().get(0).getValueTopic(TypeTopic.Power));
+//			System.out.println("Relay2: "+Devices.getInst().getRelays().get(1).getTopics().get(0).getValueTopic(TypeTopic.Power));
+//			System.out.println("Relay3: "+Devices.getInst().getRelays().get(2).getTopics().get(0).getValueTopic(TypeTopic.Power));
+//			System.out.println("Relay4: "+Devices.getInst().getRelays().get(3).getTopics().get(0).getValueTopic(TypeTopic.Power));
+//			System.out.println("Relay5: "+Devices.getInst().getRelays().get(4).getTopics().get(0).getValueTopic(TypeTopic.Power));
+//			System.out.println("Relay6: "+Devices.getInst().getRelays().get(5).getTopics().get(0).getValueTopic(TypeTopic.Power));
+//			System.out.println("SensorTemp1: "+Devices.getInst().getSensors().get(0).getTopics().get(0).getValueTopic(TypeTopic.Temperature));
+//			System.out.println("SensorHum2: "+Devices.getInst().getSensors().get(0).getTopics().get(0).getValueTopic(TypeTopic.Humidity));
+//			System.out.println("SensorTemp3: "+Devices.getInst().getSensors().get(1).getTopics().get(0).getValueTopic(TypeTopic.Temperature));
+//			System.out.println("SensorHum4: "+Devices.getInst().getSensors().get(1).getTopics().get(0).getValueTopic(TypeTopic.Humidity));
+//			System.out.println("SensorTemp5: "+Devices.getInst().getSensors().get(2).getTopics().get(0).getValueTopic(TypeTopic.Temperature));            
+//			System.out.println("SensorHum6: "+Devices.getInst().getSensors().get(2).getTopics().get(0).getValueTopic(TypeTopic.Humidity));
+//			System.out.println("SensorTemp7: "+Devices.getInst().getSensors().get(3).getTopics().get(0).getValueTopic(TypeTopic.Temperature));
+//            Devices.getInst().deleteDevice(new DeviceConfig(TypeDevice.SonoffS20, "3"));
 			
 	} catch (InterruptedException ex) {
 		Thread.currentThread().interrupt();
