@@ -1,8 +1,14 @@
 package com.dnomaid.iot;
 
+import java.security.acl.Group;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import com.dnomaid.iot.mqtt.Mqtt;
+import com.dnomaid.iot.mqtt.device.Device;
 import com.dnomaid.iot.mqtt.device.DeviceConfig;
 import com.dnomaid.iot.mqtt.device.Devices;
+import com.dnomaid.iot.mqtt.global.Constants.GroupList;
 import com.dnomaid.iot.mqtt.global.Constants.TypeDevice;
 import com.dnomaid.iot.mqtt.topic.ActionTopic.TypeTopic;
 
@@ -27,9 +33,7 @@ public class App implements Runnable {
 		//Devices.getInst().getRelay().stream().forEach(a->{m.publish(a.getTopics().get(1).getName(), "ON");});
 		//m.unsubscribe();
 		//m.disconnection();
-		
-		
-		
+				
 		while(true){app.run();}				
 	}
 	@Override
@@ -46,7 +50,22 @@ public class App implements Runnable {
     		System.out.println(a.getDevice()+" "+a.getGroupList()+": " 
     					+a.getTopics().get(0).getValueTopic(TypeTopic.Humidity)+": "+TypeTopic.Humidity);	
 		});
-		Devices.getInst().deleteDevice(new DeviceConfig(TypeDevice.SonoffS20, "3"));
+		/*
+		Devices.getInst().getDevices().stream().forEach(a->{    	
+	    	a.getTopics().stream().forEach(b->{	    				
+	    				System.out.println("Topic::>"+b.getName());    		
+			});    
+	    }); 
+		
+		ArrayList<Device> Relayss = (ArrayList<Device>) Devices.getInst().getDevices().stream()
+				  .filter(c -> c.getGroupList().equals(GroupList.Relay))
+				  .collect(Collectors.toList()); 
+		Relayss.stream().forEach(a->{  		
+    		System.out.println(a.getDevice()+" "+a.getGroupList()+":::::::::::::::: "
+    				+a.getTopics().get(0).getValueTopic(TypeTopic.Power) +": "+TypeTopic.Power);				    
+		});
+		*/
+//		Devices.getInst().deleteDevice(new DeviceConfig(TypeDevice.SonoffS20, "3"));
 //			System.out.println("Relay1: "+Devices.getInst().getRelays().get(0).getTopics().get(0).getValueTopic(TypeTopic.Power));
 //			System.out.println("Relay2: "+Devices.getInst().getRelays().get(1).getTopics().get(0).getValueTopic(TypeTopic.Power));
 //			System.out.println("Relay3: "+Devices.getInst().getRelays().get(2).getTopics().get(0).getValueTopic(TypeTopic.Power));
