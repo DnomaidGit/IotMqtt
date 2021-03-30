@@ -79,7 +79,7 @@ public class App implements Runnable {
 //			System.out.println("SensorTemp5: "+Devices.getInst().getSensors().get(2).getTopics().get(0).getValueTopic(TypeTopic.Temperature));            
 //			System.out.println("SensorHum6: "+Devices.getInst().getSensors().get(2).getTopics().get(0).getValueTopic(TypeTopic.Humidity));
 //			System.out.println("SensorTemp7: "+Devices.getInst().getSensors().get(3).getTopics().get(0).getValueTopic(TypeTopic.Temperature));
-//            Devices.getInst().deleteDevice(new DeviceConfig(TypeDevice.SonoffS20, "3"));
+            Devices.getInst().deleteDevice(new DeviceConfig(TypeDevice.SonoffS20, "3"));
 			
 	} catch (InterruptedException ex) {
 		Thread.currentThread().interrupt();

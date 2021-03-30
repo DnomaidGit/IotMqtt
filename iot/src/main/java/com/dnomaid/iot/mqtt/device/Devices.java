@@ -30,29 +30,13 @@ public class Devices implements Constants {
     	DevicesConfig.add(new DeviceConfig(typeDevice, numberDevice));
     	selectDevice(typeDevice, numberDevice);
     }
-    public void deleteDevice(DeviceConfig deviceConfig){    	
+    public void deleteDevice(DeviceConfig deviceConfig){     	
     	IntStream.range(0, (getDevices().size()-1))
 		.forEach(index -> {
 			if (deviceConfig.toString().equals(getDevices().get(index).toString())){
-				System.out.println("Borrar.......... index: "+index);
 				getDevices().remove(index);
 			}
-		});
-    	IntStream.range(0, (getRelays().size()-1))
-		.forEach(index -> {
-			if (deviceConfig.toString().equals(getRelays().get(index).toString())){
-				System.out.println("Borrar.......... index: "+index);
-				getRelays().remove(index);
-			}
-		});
-    	IntStream.range(0, (getSensorsClimate().size()-1))
-		.forEach(index -> {
-			if (deviceConfig.toString().equals(getSensorsClimate().get(index).toString())){
-				System.out.println("Borrar.......... index: "+index);
-				getSensorsClimate().remove(index);
-			}
-		});
-
+		});    	
     }
     
     public ArrayList<DeviceConfig> getDevicesConfig() {return DevicesConfig;}

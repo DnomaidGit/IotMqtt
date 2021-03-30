@@ -68,7 +68,7 @@ public class Device implements Constants {
 
 	@Override
 	public String toString() {
-		return Device.name();
+		return NameDevice;
 	}
 	
 }
