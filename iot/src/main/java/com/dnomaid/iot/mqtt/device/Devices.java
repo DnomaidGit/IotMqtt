@@ -31,12 +31,18 @@ public class Devices implements Constants {
     	selectDevice(typeDevice, numberDevice);
     }
     public void deleteDevice(DeviceConfig deviceConfig){     	
-    	IntStream.range(0, (getDevices().size()-1))
+    	IntStream.range(0, (getDevices().size()))
 		.forEach(index -> {
 			if (deviceConfig.toString().equals(getDevices().get(index).toString())){
 				getDevices().remove(index);
 			}
-		});    	
+		}); 
+    	IntStream.range(0, (getDevicesConfig().size()))
+		.forEach(index -> {
+			if (deviceConfig.toString().equals(getDevicesConfig().get(index).toString())){
+				getDevicesConfig().remove(index);
+			}
+		});
     }
     
     public ArrayList<DeviceConfig> getDevicesConfig() {return DevicesConfig;}
