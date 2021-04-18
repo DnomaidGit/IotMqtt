@@ -31,18 +31,30 @@ public class Devices implements Constants {
     	selectDevice(typeDevice, numberDevice);
     }
     public void deleteDevice(DeviceConfig deviceConfig){     	
-    	IntStream.range(0, (getDevices().size()))
-		.forEach(index -> {
-			if (deviceConfig.toString().equals(getDevices().get(index).toString())){
-				getDevices().remove(index);
+    	/*
+    	IntStream.range(0, (getDevices().size()-1))
+			.forEach(index -> {
+				if (deviceConfig.toString().equals(getDevices().get(index).toString())){
+					getDevices().remove(index);
+				}
+			});
+		IntStream.range(0, (getDevicesConfig().size()-1))
+			.forEach(index -> {
+				if (deviceConfig.toString().equals(getDevicesConfig().get(index).toString())){
+					getDevicesConfig().remove(index);
+				}
+			});
+    	 */
+		for (int i = 0; i < getDevices().size(); ++i) {
+			if (deviceConfig.toString().equals(getDevices().get(i).toString())){
+				getDevices().remove(i);
 			}
-		}); 
-    	IntStream.range(0, (getDevicesConfig().size()))
-		.forEach(index -> {
-			if (deviceConfig.toString().equals(getDevicesConfig().get(index).toString())){
-				getDevicesConfig().remove(index);
+		}
+		for (int i = 0; i < getDevicesConfig().size(); ++i) {
+			if (deviceConfig.toString().equals(getDevicesConfig().get(i).toString())){
+				getDevicesConfig().remove(i);
 			}
-		});
+		}
     }
     
     public ArrayList<DeviceConfig> getDevicesConfig() {return DevicesConfig;}
