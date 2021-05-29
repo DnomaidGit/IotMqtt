@@ -17,6 +17,7 @@ public class MqttCallbackHandler implements MqttCallback {
     if (cause != null) {
       Connection c = Connection.getInstance();
       Status.getInst().changeConnectionStatus(Status.ConnectionStatus.DISCONNECTED);
+      Status.getInst().changeTopicStatus(Status.TopicStatus.NONE);
       Object[] args = new Object[2];
       args[0] = c.getClientId();
       args[1] = c.getServer();
