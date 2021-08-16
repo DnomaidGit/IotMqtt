@@ -33,6 +33,7 @@ public class App implements Runnable {
 		//Devices.getInst().getRelay().stream().forEach(a->{m.publish(a.getTopics().get(1).getName(), "ON");});
 		//m.unsubscribe();
 		//m.disconnection();
+		//qui
 				
 		while(true){app.run();}				
 	}
